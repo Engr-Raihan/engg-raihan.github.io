@@ -1,0 +1,28 @@
+<!-- HTML file with Web3.js Integration -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Integration</title>
+</head>
+<body>
+    <h1>Blockchain Integration</h1>
+    
+    <button onclick="checkBlockchainConnection()">Check Blockchain Connection</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.6/dist/web3.min.js"></script>
+    <script>
+        // Connect to a local Ethereum node (replace with your node's URL)
+        const web3 = new Web3('http://localhost:8545');
+
+        function checkBlockchainConnection() {
+            if (web3 && web3.currentProvider && web3.currentProvider.isConnected()) {
+                alert('Connected to Blockchain!');
+            } else {
+                alert('Not connected to Blockchain. Please check your connection.');
+            }
+        }
+    </script>
+</body>
+</html>

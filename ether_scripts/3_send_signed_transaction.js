@@ -1,5 +1,4 @@
 const { ethers } = require("ethers");
-
 const provider = new ethers.providers.JsonRpcProvider(`https://rpc.swissdlt.ch`)
 
 

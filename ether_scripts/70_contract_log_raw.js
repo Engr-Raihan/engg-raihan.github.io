@@ -10,6 +10,7 @@ const main = async () => {
     console.log(`Getting the BatchCreated events...`);
     const currentBlock = await swiss_dlt_provider.getBlockNumber()
     const eventTopic = ethers.utils.id(FACTORY_AVI);
+    const interface = new ethers.utils.Interface(FACTORY_AVI);
 
     rawLogs = await swiss_dlt_provider.getLogs({
         address: FACTORY_ADDRESS,
@@ -18,7 +19,16 @@ const main = async () => {
         toBlock: currentBlock
     });
 
-    console.log(rawLogs);
+    rawLogs.forEach((log) => {
+        console.log(`BEFORE PARSING:`);
+        console.debug(log);
+        console.log(`\n`);
+
+        console.log(`AFTER PARSING:`);
+        let parsedLog = interface.parseLog(log);
+        console.debug(parsedLog);
+        console.log('************************************************');
+    })
 }
 
 main()

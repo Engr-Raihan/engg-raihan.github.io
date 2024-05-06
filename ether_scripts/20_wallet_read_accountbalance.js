@@ -1,16 +1,17 @@
+require('dotenv').config();
 const { ethers } = require("ethers");
+const { SWISS_RPC, RAIHAN_WALLET } = process.env;
 
-const provider = new ethers.providers.JsonRpcProvider(`https://rpc.swissdlt.ch`)
-const address = '0x40C728B90578b3390f0c3cba8FF72B16822F4255'
+const swiss_dlt_provider = new ethers.providers.JsonRpcProvider(SWISS_RPC);
 
 const main = async () => {
-    const balance = await provider.getBalance(address)
-    // const balance = await provider.getTransactionCount(address)
+    const balance = await swiss_dlt_provider.getBalance(RAIHAN_WALLET);
+    // const balance = await provider.getTransactionCount(ROOT_WALLET)
     // const balance = await provider.listAccounts()
-    // const balance = await provider.getCode(address)
+    // const balance = await provider.getCode(ROOT_WALLET)
     // const balance = await provider.getBlock(100004)
     // const balance = await provider.getBlockWithTransactions(100004)
-    // const balance = await provider.lookupAddress(address)
+    // const balance = await provider.lookupAddress(ROOT_WALLET)
     // const balance = await provider.getText("email");
     // const balance = await provider.getText("email");
     // const balance = await provider.getText("url");
@@ -21,8 +22,7 @@ const main = async () => {
     // const balance = await provider.getFeeData();
     // console.log(`\nETH Balance of ${address} --> ${ethers.utils.formatEther(balance)} ETH\n`)
     // console.log(ethers.utils.formatUnits(balance, "gwei"))
-    console.log(balance)
+    console.log(`Balance Receiver: ${ethers.utils.formatEther(balance)}\n`)
 }
 
 main()
-

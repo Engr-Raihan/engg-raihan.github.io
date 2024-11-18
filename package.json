@@ -1,16 +1,26 @@
 {
   "name": "helper-lib",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This lib is made for arbitrary coding and concept building",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Engr. Md. Raihan Mahamud",
   "license": "ISC",
   "dependencies": {
-    "crypto-js": "^4.2.0",
-    "dotenv": "^16.4.5",
-    "ethers": "^5.7.2"
+    "@xenova/transformers": "2.17.2",
+    "crypto-js": "4.2.0",
+    "dotenv": "16.4.5",
+    "ethers": "5.7.2",
+    "openai": "4.53.2"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "@types/sinon-chai": "^3.2.12",
+    "ethereum-waffle": "^4.0.10",
+    "hardhat": "2.22.15"
   }
 }

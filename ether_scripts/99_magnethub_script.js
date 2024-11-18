@@ -7,13 +7,13 @@ const { ANIKA_WALLET, RAIHAN_WALLET } = process.env;
 
 // batchName()
 // totalSupply()
-maxSupply()
+// maxSupply()
 
-// create('Test Contract 8', 1500, 1778163422);
-// address('Test Contract 8')
+// create('Test_Contract_03', 200, 1778163422);
+address('Test_Contract_02')
 
 
-// claim('Test Contract 7', 'UID24', ANIKA_WALLET, 5);
+// claim('250606_ean123_lot123', 'UID_05', RAIHAN_WALLET, 2);
 // claimed('UID12');
 
 // batches = ['0xa79bc52aa88daacc70bfc983643cd434de909361'];

@@ -20,7 +20,7 @@ const create = async (_name, _amount, _expire) => {
     const root_wallet = new ethers.Wallet(ROOT_PTV_KEY, swiss_dlt_provider);
     const contract_with_root_wallet = factory_contract.connect(root_wallet);
 
-    const tx = await contract_with_root_wallet.createBatch(_name, `${_amount}000000000000000000`, _expire);
+    const tx = await contract_with_root_wallet.createBatch(_name, `${_amount}000000`, _expire);
     const res = await tx.wait();
     // console.log('tx: ', tx);
     // console.log('res: ', res);

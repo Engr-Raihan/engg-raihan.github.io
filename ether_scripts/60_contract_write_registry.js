@@ -21,10 +21,10 @@ const claim = async (_batch, _uid, _to, _amount) => {
     const root_wallet = new ethers.Wallet(ROOT_PTV_KEY, swiss_dlt_provider);
     const contract_with_root_wallet = registry_contract.connect(root_wallet);
     const tx = await contract_with_root_wallet.claimBatchToken(
-        _batch, _uid, _to, `${_amount}`
+        _batch, _uid, _to, `${_amount}000000`
     );
     const res = await tx.wait();
-    // console.log('tx: ', tx);
+    console.log('tx: ', tx);
     // console.log('res: ', res);
 
     const event = res.events.find(event => event.event === 'TokenClaimed');

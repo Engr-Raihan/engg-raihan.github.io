@@ -56,9 +56,9 @@ string key = "88c4d5784ce64e4face49121fb678166"; // 128-bit key
 //string key = "1234567890123456"; // 128-bit key
 string iv = "1234567890123456"; // 128-bit IV
 
-string encrypted = EncryptStringAES("0x01a7e4cf5966d341daa11cb0dfc1a2a879a881b9b1a59eb18fe4be61a341465a", key, iv);
-Console.WriteLine("Encrypted: " + encrypted);
+/*string encrypted = EncryptStringAES("0x01a7e4cf5966d341daa11cb0dfc1a2a879a881b9b1a59eb18fe4be61a341465a", key, iv);
+Console.WriteLine("Encrypted: " + encrypted);*/
 
-//string encrypted1 = "EkTcxuA91LYjgxtAzAlIoLH7MkWaHCobRzHFixRK8UBqwf0nCcZypr+U5/xevU5MAxZeC5fycXocu1ZRc3S2m4D2JpdJcIffGh1+tB5msl8=";
-string decrypted = DecryptStringAES(encrypted, key, iv);
+string encrypted1 = "EkTcxuA91LYjgxtAzAlIoLH7MkWaHCobRzHFixRK8UBqwf0nCcZypr+U5/xevU5MAxZeC5fycXocu1ZRc3S2m4D2JpdJcIffGh1+tB5msl8=";
+string decrypted = DecryptStringAES(encrypted1, key, iv);
 Console.WriteLine("Decrypted: " + decrypted);

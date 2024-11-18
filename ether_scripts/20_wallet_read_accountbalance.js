@@ -21,7 +21,7 @@ const main = async () => {
     // const balance = await provider.getFeeData();
     // const balance = await provider.getFeeData();
     // console.log(`\nETH Balance of ${address} --> ${ethers.utils.formatEther(balance)} ETH\n`)
-    // console.log(ethers.utils.formatUnits(balance, "gwei"))
+    console.log(ethers.utils.formatUnits(balance, "gwei"))
     console.log(`Balance Receiver: ${ethers.utils.formatEther(balance)}\n`)
 }
 

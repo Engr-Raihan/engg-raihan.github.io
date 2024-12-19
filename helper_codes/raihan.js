@@ -1,84 +1,83 @@
-// Example original object (provided by you)
-const originalObject = {
-    "ItemId": "1d2906af-a4a6-4899-876d-b012abe48c31",
-    "CreateDate": "2024-11-13T07:44:09.196Z",
-    "Name": "Test Certirficate 1",
-    "OrganizationId": "0df95044-9083-450f-ae2b-771614c1f7a2",
-    "IssueDate": "2024-11-13T00:00:00Z",
-    "ExpiryDate": "2024-11-30T00:00:00Z",
-    "PublishDate": null,
-    "Comment": null,
-    "ReferenceNumber": null,
-    "IssuingPlace": "dhaka",
-    "TransactionHash": null,
-    "Status": {
-        "Status": "draft",
-        "UpdatedDate": null,
-        "PersonInfo": {
-            "Salutaion": "",
-            "FirstName": "Tenant 1",
-            "LastName": "Admin",
-            "DisplayName": "Tenant 001 Admin",
-            "Address": "",
-            "StreetAddress": "",
-            "StreetNo": "",
-            "PostCode": "",
-            "City": "",
-            "Country": "",
-            "CountryCode": "",
-            "Latitude": null,
-            "Longitude": null,
-            "Canton": "",
-            "Email": "magtadmin@yopmail.com",
-            "PhoneNumber": "+8801676657517",
-            "PersonId": "de51974c-b819-4339-a140-ff5ed858e06d",
-            "UserId": "3c739377-54c4-437e-841e-0d8f6afd65d6"
-        }
-    },
-    "CertificateInfo": {
-        "ItenId": null,
-        "Name": "Welcome to magnet.hub.pdf",
-        "Type": "pdf",
-        "Size": null,
-        "FileId": "3bbd5999-8aff-4951-bb69-266cb1434c1c",
-        "DownloadLink": "https://smartcityfalcon.blob.core.windows.net/public-dev/A0068B42-BE66-409B-BD63-83D576308F9A/3bbd5999-8aff-4951-bb69-266cb1434c1c/a7414301-edf2-460b-a449-c25ee0eee741/Welcome%20to%20magnet.hub.pdf"
-    }
-};
-
-// Dynamic list of field objects
-const fieldList = [
-    { FieldName: 'Cert_Name', FieldCaption: 'Certificate_Name', ValueType: 'text', Value: 'Name' },
-    { FieldName: 'Cert_Status', FieldCaption: 'Certificate_Status', ValueType: 'text', Value: 'Status.Status' },
-    { FieldName: 'Cert_IssueDate', FieldCaption: 'Certificate_IssueDate', ValueType: 'date', Value: 'IssueDate' },
-    { FieldName: 'Cert_ExpiryDate', FieldCaption: 'Certificate_ExpiryDate', ValueType: 'date', Value: 'ExpiryDate' },
-    { FieldName: 'Cert_PublishDate', FieldCaption: 'Certificate_PublishDate', ValueType: 'date', Value: 'PublishDate' },
-    { FieldName: 'Cert_Comment', FieldCaption: 'Certificate_Comment', ValueType: 'text', Value: 'Comment' },
-    { FieldName: 'Cert_ReferenceNumber', FieldCaption: 'Certificate_ReferenceNumber', ValueType: 'number', Value: 'ReferenceNumber' },
-    { FieldName: 'Cert_File_Name', FieldCaption: 'Certificate_File_Name', ValueType: 'text', Value: 'CertificateInfo.Name' },
-    { FieldName: 'Cert_File_Url', FieldCaption: 'Certificate_File_Url', ValueType: 'text', Value: 'CertificateInfo.DownloadLink' }
-];
-
-// Function to get a value from a nested object using a path (string)
-function getValueFromPath(obj, path) {
-    return path.split('.').reduce((acc, part) => acc && acc[part], obj);
-}
-
-// Update the 'Value' property of each object in the field list
-fieldList.forEach(field => {
-    field.Value = getValueFromPath(originalObject, field.Value);
-});
-
-// Output the updated field list
-console.log(fieldList);
+const ob = ``
+ob.split(',').map(c => {
+    console.log(`"${c.trim()}",`)
+})
 
 
 
 
+// // Example original object (provided by you)
+// const originalObject = {
+//     "ItemId": "1d2906af-a4a6-4899-876d-b012abe48c31",
+//     "CreateDate": "2024-11-13T07:44:09.196Z",
+//     "Name": "Test Certirficate 1",
+//     "OrganizationId": "0df95044-9083-450f-ae2b-771614c1f7a2",
+//     "IssueDate": "2024-11-13T00:00:00Z",
+//     "ExpiryDate": "2024-11-30T00:00:00Z",
+//     "PublishDate": null,
+//     "Comment": null,
+//     "ReferenceNumber": null,
+//     "IssuingPlace": "dhaka",
+//     "TransactionHash": null,
+//     "Status": {
+//         "Status": "draft",
+//         "UpdatedDate": null,
+//         "PersonInfo": {
+//             "Salutaion": "",
+//             "FirstName": "Tenant 1",
+//             "LastName": "Admin",
+//             "DisplayName": "Tenant 001 Admin",
+//             "Address": "",
+//             "StreetAddress": "",
+//             "StreetNo": "",
+//             "PostCode": "",
+//             "City": "",
+//             "Country": "",
+//             "CountryCode": "",
+//             "Latitude": null,
+//             "Longitude": null,
+//             "Canton": "",
+//             "Email": "magtadmin@yopmail.com",
+//             "PhoneNumber": "+8801676657517",
+//             "PersonId": "de51974c-b819-4339-a140-ff5ed858e06d",
+//             "UserId": "3c739377-54c4-437e-841e-0d8f6afd65d6"
+//         }
+//     },
+//     "CertificateInfo": {
+//         "ItenId": null,
+//         "Name": "Welcome to magnet.hub.pdf",
+//         "Type": "pdf",
+//         "Size": null,
+//         "FileId": "3bbd5999-8aff-4951-bb69-266cb1434c1c",
+//         "DownloadLink": "https://smartcityfalcon.blob.core.windows.net/public-dev/A0068B42-BE66-409B-BD63-83D576308F9A/3bbd5999-8aff-4951-bb69-266cb1434c1c/a7414301-edf2-460b-a449-c25ee0eee741/Welcome%20to%20magnet.hub.pdf"
+//     }
+// };
 
+// // Dynamic list of field objects
+// const fieldList = [
+//     { FieldName: 'Cert_Name', FieldCaption: 'Certificate_Name', ValueType: 'text', Value: 'Name' },
+//     { FieldName: 'Cert_Status', FieldCaption: 'Certificate_Status', ValueType: 'text', Value: 'Status.Status' },
+//     { FieldName: 'Cert_IssueDate', FieldCaption: 'Certificate_IssueDate', ValueType: 'date', Value: 'IssueDate' },
+//     { FieldName: 'Cert_ExpiryDate', FieldCaption: 'Certificate_ExpiryDate', ValueType: 'date', Value: 'ExpiryDate' },
+//     { FieldName: 'Cert_PublishDate', FieldCaption: 'Certificate_PublishDate', ValueType: 'date', Value: 'PublishDate' },
+//     { FieldName: 'Cert_Comment', FieldCaption: 'Certificate_Comment', ValueType: 'text', Value: 'Comment' },
+//     { FieldName: 'Cert_ReferenceNumber', FieldCaption: 'Certificate_ReferenceNumber', ValueType: 'number', Value: 'ReferenceNumber' },
+//     { FieldName: 'Cert_File_Name', FieldCaption: 'Certificate_File_Name', ValueType: 'text', Value: 'CertificateInfo.Name' },
+//     { FieldName: 'Cert_File_Url', FieldCaption: 'Certificate_File_Url', ValueType: 'text', Value: 'CertificateInfo.DownloadLink' }
+// ];
 
+// // Function to get a value from a nested object using a path (string)
+// function getValueFromPath(obj, path) {
+//     return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+// }
 
+// // Update the 'Value' property of each object in the field list
+// fieldList.forEach(field => {
+//     field.Value = getValueFromPath(originalObject, field.Value);
+// });
 
-
+// // Output the updated field list
+// console.log(fieldList);
 
 
 

@@ -6,14 +6,15 @@ contract CertificateRegistry {
     address public admin; 
 
     struct Certificate {
-        string certificateHash;    
-        string fileUrl;           
-        address owner;             
-        address assigner;            
-        uint64 timestamp;            
-        string status;                 
+        string certificateHash;         // Hash of the file content
+        string fileUrl;                 // Public URL of the file
+        address owner;                  // Owner of the certificate
+        address assigner;               // Address of the person who assigned the certificate
+        uint64 timestamp;               // Timestamp of certificate creation, reduced size to save gas
+        string status;                  // Status of the certificate
     }
 
+    // Mapping to store certificates by unique certificate ID
     mapping(string => Certificate) private certificates;
 
     // Event to log the addition of a new certificate, including the file URL
@@ -22,7 +23,7 @@ contract CertificateRegistry {
         address indexed owner,
         address indexed assigner,
         string certificateHash,
-        string fileUrl,  
+        string fileUrl,
         uint256 timestamp,
         string status
     );
@@ -47,9 +48,10 @@ contract CertificateRegistry {
     }
 
     constructor() {
-        admin = msg.sender; 
+        admin = msg.sender; // Set the contract deployer as the admin
     }
 
+    // Function to add a new certificate record; only admin can add certificates
     function addCertificate(
         string memory _certId,
         string memory _certificateHash,
@@ -71,6 +73,7 @@ contract CertificateRegistry {
         emit CertificateAdded(_certId, certificates[_certId].owner, _assigner, _certificateHash, _fileUrl, block.timestamp, _status);
     }
 
+    // Public function to retrieve certificate details by certId
     function getCertificate(string memory _certId) public view returns (
         string memory certificateHash,
         string memory fileUrl,
@@ -92,6 +95,7 @@ contract CertificateRegistry {
         );
     }
 
+    // Function to update the status of a certificate, restricted to the assigner or owner
     function updateStatus(string memory _certId, string memory _newStatus) public onlyAssignerOrOwner(_certId) {
         require(certificates[_certId].timestamp != 0, "Certificate not found.");
 
@@ -99,6 +103,7 @@ contract CertificateRegistry {
         emit StatusUpdated(_certId, _newStatus);
     }
 
+    // Function to change admin if necessary, restricted to the current admin
     function changeAdmin(address newAdmin) public onlyAdmin {
         require(newAdmin != address(0), "New admin address cannot be zero");
         admin = newAdmin;

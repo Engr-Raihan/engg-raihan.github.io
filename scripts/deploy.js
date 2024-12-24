@@ -1,6 +1,6 @@
 async function main() {
     const Certificate = await ethers.getContractFactory("CertificateRegistry");
-    const certificate = await Certificate.deploy();
+    const certificate = await Certificate.deploy(); //Pass the parameter here
 
     await certificate.deployed();
 

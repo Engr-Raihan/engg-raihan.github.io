@@ -1,7 +1,11 @@
-const ob = ``
-ob.split(',').map(c => {
-    console.log(`"${c.trim()}",`)
+const ob = `Zhai, X., Kolesnikov, A., Houlsby, N. and Beyer, L.,`
+let final = []
+ob.replace(' and', ',').split('.,').map(c => {
+    let res = c.split(',')
+    final.push(`${res[1]}. ${res[0]}`)
 })
+
+console.log(final.join(','))
 
 
 

@@ -1,6 +1,6 @@
 require('dotenv').config();
 const { ethers } = require("ethers");
-const { registry_avi } = require('./avi/constant');
+const { registry_avi, batch_avi } = require('./avi/constant');
 const { SWISS_RPC, REGISTRY_ADDRESS, ROOT_PTV_KEY, ANIKA_PTV_KEY, ANIKA_WALLET, RAIHAN_WALLET } = process.env;
 
 
@@ -32,6 +32,7 @@ const claim = async (_batch, _uid, _to, _amount) => {
     console.log(`${value} is claimed by user: ${to}`);
     console.log(`For uid: ${uid} from the batch: ${batch}`);
 }
+
 const transfer = async (pvt_key, to, batches, amounts) => {
     const wallet = new ethers.Wallet(pvt_key, swiss_dlt_provider);
     const contract_with_wallet = registry_contract.connect(wallet);
@@ -44,12 +45,37 @@ const transfer = async (pvt_key, to, batches, amounts) => {
     console.log(`Amount is transferred to account: ${to}`);
 }
 
+const signTransfer = async (pvt_key, to, batches, amounts) => {
+    const wallet = new ethers.Wallet(pvt_key, swiss_dlt_provider);
+    const data = registry_contract.interface.encodeFunctionData('transferBulk', [to, batches, amounts]);
+
+    // Estimate gas and create transaction
+    // chainId: (await provider.getNetwork()).chainId
+    const tx = {
+        data: data,
+        chainId: 94,
+        to: registry_contract.address,
+        gasLimit: ethers.utils.hexlify(50000),
+        gasPrice: await swiss_dlt_provider.getGasPrice(),
+        nonce: await swiss_dlt_provider.getTransactionCount(wallet.address, 'latest')
+    };
 
 
-// batches = ['0xb3f44E7Ea0DE98bbCaf553014133263426E244A0', '0xbD13E13564Cb52b4A69d0d1194aDCB2b9b636065', '0x619a4Cf5Dc4Ec37d3B00D698621501c69Aa8AA63'];
-// amounts = ['100000000000000000000', '10000000000000000000', '3000000000000000000'];
+    // Sign the transaction
+    const signedTx = await wallet.signTransaction(tx);
+    // console.log('pre send tx: ', signedTx);
+
+    const txResponse = await swiss_dlt_provider.sendTransaction(signedTx);
+    const res = await txResponse.wait();
+    console.log('post send tx: ', res);
+}
+
+
+// batches = ['0x25170422e3b9e88ebdd44fab94049c48fb279930'];
+// amounts = ['15000000'];
 
 // claim('Test Contract 6', 'UID21', ANIKA_WALLET, 10);
 // transfer(RAIHAN_WALLET, batches, amounts);
+// signTransfer(pvt, RAIHAN_WALLET, batches, amounts);
 
-module.exports = { claim, transfer }
+module.exports = { claim, transfer, signTransfer }
